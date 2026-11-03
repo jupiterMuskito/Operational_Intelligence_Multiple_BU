@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "business_units": {
+    "refinery": {
+      "name": "Refinery",
+      "short_name": "Refinery",
+      "hierarchy": ["Refinery", "Alkylation", "Butamer"],
+      "home_title": "Butamer Operations Center",
+      "home_subtitle": "A professional operational workspace for unit health, feed-to-product performance, field verification and controlled knowledge.",
+      "kpi_section_title": "Butamer at a glance",
+      "features": ["Home", "Analytics", "Digital rounds", "SOP & knowledge", "Events"],
+      "navigation": {
+        "overview": "Unit Overview",
+        "analytics": "Feed → Process → Product",
+        "rounds": "Digital Operator Rounds",
+        "sops": "SOP & Knowledge Portal",
+        "events": "Events & Investigations",
+        "admin": "Portal Administration"
+      },
+      "data": {
+        "process_file": "data/processed/analysis/butamer_kpi_dataset.csv",
+        "date_column": "date",
+        "mode_column": "operating_mode",
+        "normal_mode": "Normal Operation",
+        "source_label": "Packaged demonstration dataset; replace from Admin before operational use",
+        "is_demo": true
+      },
+      "kpis": [
+        {"column": "feed_ic4_ratio", "label": "Average feed iC4 ratio", "aggregate": "mean", "unit": "%", "decimals": 1, "target": 40},
+        {"column": "product_ic4_ratio", "label": "Average product iC4 ratio", "aggregate": "mean", "unit": "%", "decimals": 1, "target": 85},
+        {"column": "ic4_improvement", "label": "Average iC4 improvement", "aggregate": "mean", "unit": "pts", "decimals": 1, "target": 45},
+        {"column": "reactor_a_delta_t", "label": "Reactor A ΔT", "aggregate": "mean", "unit": "°C", "decimals": 1},
+        {"column": "reactor_b_delta_t", "label": "Reactor B ΔT", "aggregate": "mean", "unit": "°C", "decimals": 1},
+        {"column": "", "label": "Days with process data", "aggregate": "count", "unit": "days", "decimals": 0}
+      ],
+      "analytics": {
+        "relationship": {"x": "feed_ic4_ratio", "y": "product_ic4_ratio", "title": "Feed quality vs product quality"}
+      },
+      "rounds": {
+        "shifts": ["Morning", "Afternoon", "Night"],
+        "units": ["Butamer feed section", "Reactor section", "Stabilizer section", "Utilities interface"],
+        "fields": [
+          {"tag": "PI-2101", "label": "Feed pressure", "unit": "bar(g)", "dcs_column": "feed_pressure_barg", "tolerance": 0.3, "default": 18.0},
+          {"tag": "TI-2201", "label": "Reactor A inlet temperature", "unit": "°C", "dcs_column": "reactor_a_inlet_c", "tolerance": 2.0, "default": 145.0},
+          {"tag": "TI-2202", "label": "Reactor A outlet temperature", "unit": "°C", "dcs_column": "reactor_a_outlet_c", "tolerance": 2.0, "default": 154.0},
+          {"tag": "PI-2301", "label": "Stabilizer pressure", "unit": "bar(g)", "dcs_column": "stabilizer_pressure_barg", "tolerance": 0.2, "default": 7.5}
+        ]
+      },
+      "sops": {
+        "seed": [
+          {"title": "Sample reference – Butamer unit startup", "category": "SOP", "unit": "Butamer", "version": "Upload approved revision"},
+          {"title": "Sample reference – Reactor changeover", "category": "Operating guidance", "unit": "Reactor section", "version": "Upload approved revision"},
+          {"title": "Sample reference – Feed and product sampling", "category": "Checklist", "unit": "Butamer", "version": "Upload approved revision"}
+        ]
+      },
+      "context": {"governance": "Normal-mode KPI filtering, explicit demo/live data label, auditable rounds and admin-controlled uploads."}
+    },
+    "cement": {
+      "name": "Cement",
+      "short_name": "Cement",
+      "hierarchy": ["Cement", "Integrated Plant", "Pyroprocessing"],
+      "home_title": "Cement Operations Center",
+      "home_subtitle": "A configurable view of kiln performance, production quality, field rounds and plant knowledge.",
+      "kpi_section_title": "Plant performance at a glance",
+      "features": ["Home", "Analytics", "Digital rounds", "SOP & knowledge", "Events"],
+      "navigation": {
+        "overview": "Plant Overview",
+        "analytics": "Production & Quality Analytics",
+        "rounds": "Plant Field Rounds",
+        "sops": "Plant Knowledge Portal",
+        "events": "Events & Reliability",
+        "admin": "Portal Administration"
+      },
+      "data": {
+        "process_file": "data/demo/cement_demo.csv",
+        "date_column": "date",
+        "mode_column": "operating_mode",
+        "normal_mode": "Normal",
+        "source_label": "Packaged demonstration dataset; replace from Admin before operational use",
+        "is_demo": true
+      },
+      "kpis": [
+        {"column": "clinker_tpd", "label": "Average clinker production", "aggregate": "mean", "unit": "t/day", "decimals": 0, "target": 6000},
+        {"column": "kiln_feed_tph", "label": "Kiln feed", "aggregate": "mean", "unit": "t/h", "decimals": 1, "target": 400},
+        {"column": "heat_kcal_kg", "label": "Specific heat consumption", "aggregate": "mean", "unit": "kcal/kg", "decimals": 0, "target": 750},
+        {"column": "free_lime_pct", "label": "Clinker free lime", "aggregate": "mean", "unit": "%", "decimals": 2, "target": 1.5},
+        {"column": "kiln_availability_pct", "label": "Kiln availability", "aggregate": "mean", "unit": "%", "decimals": 1, "target": 92},
+        {"column": "", "label": "Days in view", "aggregate": "count", "unit": "days", "decimals": 0}
+      ],
+      "analytics": {"relationship": {"x": "kiln_feed_tph", "y": "clinker_tpd", "title": "Kiln feed vs clinker output"}},
+      "rounds": {
+        "shifts": ["A", "B", "C"],
+        "units": ["Preheater", "Kiln", "Cooler", "Coal mill"],
+        "fields": [
+          {"tag": "KILN-SPD", "label": "Kiln speed", "unit": "rpm", "dcs_column": "kiln_speed_rpm", "tolerance": 0.1, "default": 4.0},
+          {"tag": "PH-O2", "label": "Preheater exit oxygen", "unit": "%", "dcs_column": "preheater_o2_pct", "tolerance": 0.4, "default": 3.0},
+          {"tag": "COOL-AIR", "label": "Cooler air pressure", "unit": "mbar", "dcs_column": "cooler_air_mbar", "tolerance": 3.0, "default": 65.0}
+        ]
+      },
+      "sops": {"seed": [
+        {"title": "Sample reference – Kiln light-up", "category": "SOP", "unit": "Kiln", "version": "Upload approved revision"},
+        {"title": "Sample reference – Cooler inspection", "category": "Checklist", "unit": "Cooler", "version": "Upload approved revision"}
+      ]},
+      "context": {"governance": "The same reusable feature set is driven by Cement configuration and uploaded plant data."}
+    },
+    "fertilizer": {
+      "name": "Fertilizer",
+      "short_name": "Fertilizer",
+      "hierarchy": ["Fertilizer", "Ammonia Plant", "Synthesis Loop"],
+      "home_title": "Fertilizer Operations Center",
+      "home_subtitle": "Operational visibility, quality analytics, rounds and knowledge configured for ammonia production.",
+      "kpi_section_title": "Ammonia performance at a glance",
+      "features": ["Home", "Analytics", "Digital rounds", "SOP & knowledge", "Events"],
+      "navigation": {
+        "overview": "Plant Overview",
+        "analytics": "Production & Efficiency Analytics",
+        "rounds": "Digital Plant Rounds",
+        "sops": "SOP & Learning Hub",
+        "events": "Events & Investigations",
+        "admin": "Portal Administration"
+      },
+      "data": {
+        "process_file": "data/demo/fertilizer_demo.csv",
+        "date_column": "date",
+        "mode_column": "operating_mode",
+        "normal_mode": "Normal",
+        "source_label": "Packaged demonstration dataset; replace from Admin before operational use",
+        "is_demo": true
+      },
+      "kpis": [
+        {"column": "ammonia_tpd", "label": "Ammonia production", "aggregate": "mean", "unit": "t/day", "decimals": 0, "target": 2300},
+        {"column": "natural_gas_nm3_t", "label": "Natural gas intensity", "aggregate": "mean", "unit": "Nm³/t", "decimals": 0, "target": 850},
+        {"column": "loop_pressure_bar", "label": "Synthesis loop pressure", "aggregate": "mean", "unit": "bar", "decimals": 1},
+        {"column": "converter_outlet_c", "label": "Converter outlet temperature", "aggregate": "mean", "unit": "°C", "decimals": 1},
+        {"column": "availability_pct", "label": "Plant availability", "aggregate": "mean", "unit": "%", "decimals": 1, "target": 95},
+        {"column": "", "label": "Days in view", "aggregate": "count", "unit": "days", "decimals": 0}
+      ],
+      "analytics": {"relationship": {"x": "natural_gas_nm3_t", "y": "ammonia_tpd", "title": "Gas intensity vs ammonia output"}},
+      "rounds": {
+        "shifts": ["Day", "Night"],
+        "units": ["Reformer", "CO2 removal", "Methanation", "Synthesis loop"],
+        "fields": [
+          {"tag": "SYN-P", "label": "Synthesis loop pressure", "unit": "bar", "dcs_column": "loop_pressure_bar", "tolerance": 1.5, "default": 150.0},
+          {"tag": "CONV-T", "label": "Converter outlet temperature", "unit": "°C", "dcs_column": "converter_outlet_c", "tolerance": 3.0, "default": 470.0},
+          {"tag": "REF-DP", "label": "Reformer differential pressure", "unit": "mbar", "dcs_column": "reformer_dp_mbar", "tolerance": 5.0, "default": 85.0}
+        ]
+      },
+      "sops": {"seed": [
+        {"title": "Sample reference – Synthesis loop startup", "category": "SOP", "unit": "Synthesis loop", "version": "Upload approved revision"},
+        {"title": "Sample reference – Ammonia sampling", "category": "Checklist", "unit": "Laboratory interface", "version": "Upload approved revision"}
+      ]},
+      "context": {"governance": "The Fertilizer workspace uses the same reusable modules with BU-specific labels, tags and KPIs."}
+    }
+  }
+}

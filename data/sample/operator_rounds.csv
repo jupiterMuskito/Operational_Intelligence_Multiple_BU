@@ -1,0 +1,10 @@
+date,business_unit,block,unit,section,equipment,parameter,field_value,unit_of_measure,status,remarks,recorded_by,recorded_at
+2026-10-13,Refinery,Alkylation,Butamer,Feed,Feed surge drum,Pressure,7.59,bar(g),Normal,Reconstructed demonstration entry,Demo Operator,2026-10-13 08:00
+2026-10-13,Refinery,Alkylation,Butamer,Reaction,Reactor A,Inlet temperature,147.48,°C,Normal,Reconstructed demonstration entry,Demo Operator,2026-10-13 08:00
+2026-10-13,Refinery,Alkylation,Butamer,Reaction,Reactor A,Outlet temperature,157.95,°C,Normal,Reconstructed demonstration entry,Demo Operator,2026-10-13 08:00
+2026-10-14,Refinery,Alkylation,Butamer,Feed,Feed surge drum,Pressure,8.0,bar(g),Normal,Reconstructed demonstration entry,Demo Operator,2026-10-14 08:00
+2026-10-14,Refinery,Alkylation,Butamer,Reaction,Reactor A,Inlet temperature,145.17,°C,Normal,Reconstructed demonstration entry,Demo Operator,2026-10-14 08:00
+2026-10-14,Refinery,Alkylation,Butamer,Reaction,Reactor A,Outlet temperature,157.7,°C,Normal,Reconstructed demonstration entry,Demo Operator,2026-10-14 08:00
+2026-10-15,Refinery,Alkylation,Butamer,Feed,Feed surge drum,Pressure,7.89,bar(g),Normal,Reconstructed demonstration entry,Demo Operator,2026-10-15 08:00
+2026-10-15,Refinery,Alkylation,Butamer,Reaction,Reactor A,Inlet temperature,144.47,°C,Normal,Reconstructed demonstration entry,Demo Operator,2026-10-15 08:00
+2026-10-15,Refinery,Alkylation,Butamer,Reaction,Reactor A,Outlet temperature,155.3,°C,Normal,Reconstructed demonstration entry,Demo Operator,2026-10-15 08:00

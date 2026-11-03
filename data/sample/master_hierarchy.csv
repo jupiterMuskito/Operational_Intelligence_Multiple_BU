@@ -1,0 +1,8 @@
+business_unit,block,unit,section,equipment
+Refinery,Alkylation,Butamer,Feed,Feed surge drum
+Refinery,Alkylation,Butamer,Reaction,Reactor A
+Refinery,Alkylation,Butamer,Reaction,Reactor B
+Refinery,Alkylation,Butamer,Fractionation,Stabilizer
+Refinery,Alkylation,Alkylation,Reaction,Alkylation reactor
+Cement,Integrated Plant,Pyroprocessing,Kiln,Rotary kiln
+Fertilizer,Ammonia Plant,Synthesis Loop,Synthesis,Ammonia converter

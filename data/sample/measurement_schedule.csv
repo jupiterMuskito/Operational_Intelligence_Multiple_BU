@@ -1,0 +1,13 @@
+date,business_unit,block,unit,equipment,parameter,expected_entries,criticality
+2026-10-13,Refinery,Alkylation,Butamer,Feed surge drum,Pressure,1,High
+2026-10-13,Refinery,Alkylation,Butamer,Reactor A,Inlet temperature,1,High
+2026-10-13,Refinery,Alkylation,Butamer,Reactor A,Outlet temperature,1,High
+2026-10-13,Refinery,Alkylation,Butamer,Stabilizer,Pressure,1,Medium
+2026-10-14,Refinery,Alkylation,Butamer,Feed surge drum,Pressure,1,High
+2026-10-14,Refinery,Alkylation,Butamer,Reactor A,Inlet temperature,1,High
+2026-10-14,Refinery,Alkylation,Butamer,Reactor A,Outlet temperature,1,High
+2026-10-14,Refinery,Alkylation,Butamer,Stabilizer,Pressure,1,Medium
+2026-10-15,Refinery,Alkylation,Butamer,Feed surge drum,Pressure,1,High
+2026-10-15,Refinery,Alkylation,Butamer,Reactor A,Inlet temperature,1,High
+2026-10-15,Refinery,Alkylation,Butamer,Reactor A,Outlet temperature,1,High
+2026-10-15,Refinery,Alkylation,Butamer,Stabilizer,Pressure,1,Medium

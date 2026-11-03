@@ -1,0 +1,4 @@
+section,equipment,tag,purpose,key_checks
+Feed,Feed surge drum,PI-2101,Feed buffer and pressure indication,"Pressure, level, leakage"
+Reaction,Reactor A,TI2504/TI2509,Isomerization reaction,"Temperature profile, differential pressure, leakage"
+Fractionation,Stabilizer,PI2601,Product stabilization,"Pressure, temperature, reboiler condition"

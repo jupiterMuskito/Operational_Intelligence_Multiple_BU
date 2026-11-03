@@ -1,0 +1,2 @@
+date,equipment,area,observation,priority,status,possible_cause,recommended_action,related_sop,related_issue
+2026-10-15,Reactor A,Reaction,Field and DCS outlet temperatures require review,Medium,Open,Local indicator bias or daily-average timing difference,Repeat simultaneous field/DCS check and raise instrument work request if outside limits,SOP-BUT-002,Field and DCS temperature mismatch

@@ -1,0 +1,3 @@
+issue,symptoms,possible_causes,recommended_actions
+Field and DCS temperature mismatch,Local and DCS values differ beyond the configured threshold,Indicator bias; transmitter drift; timing mismatch; impulse or sensing issue,Repeat simultaneous check; validate calibration; inspect sensing element; raise work request
+Low product iC4 ratio,Product quality below expected range,Feed quality change; reactor temperature; hydrogen availability; analyzer or lab issue,"Confirm sample; review feed, reactor ΔT, hydrogen and operating mode before adjustment"

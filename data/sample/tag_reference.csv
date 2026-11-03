@@ -1,0 +1,7 @@
+equipment,parameter,tag,description,dcs_tag,tag_status,unit_of_measure
+Feed surge drum,Pressure,PI-2101,Feed surge drum local pressure,PI2601,Mapped,bar(g)
+Reactor A,Inlet temperature,TI-2201,Reactor A local inlet temperature,TI2504,Mapped,°C
+Reactor A,Outlet temperature,TI-2202,Reactor A local outlet temperature,TI2509,Mapped,°C
+Reactor B,Inlet temperature,TI-2211,Reactor B local inlet temperature,TI2510,Mapped,°C
+Reactor B,Outlet temperature,TI-2212,Reactor B local outlet temperature,TI2515,Mapped,°C
+Stabilizer,Pressure,PI-2301,Stabilizer local pressure,PI2601,Mapped,bar(g)

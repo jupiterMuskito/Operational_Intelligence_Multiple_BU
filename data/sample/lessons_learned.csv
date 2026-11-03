@@ -1,0 +1,3 @@
+area,title,observation,resolution,recommendation
+Reaction,Verify timestamps before comparing field and DCS readings,Daily averages can differ from a point-in-time local reading,Use simultaneous readings for confirmation,Record comparison time and source in the round
+Quality,Separate non-normal periods from performance baselines,Turnaround and reduced-rate data distort averages,Apply operating-mode labels,Use Normal Operation for baseline comparisons

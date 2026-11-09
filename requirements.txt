@@ -1,8 +1,0 @@
-streamlit>=1.42,<2
-pandas>=2.2,<3
-numpy>=1.26,<2
-pyarrow>=14,<15
-plotly>=5.24,<7
-openpyxl>=3.1,<4
-statsmodels>=0.14,<1
-requests>=2.32,<3

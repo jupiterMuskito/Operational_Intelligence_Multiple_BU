@@ -1,0 +1,16 @@
+[
+  "tests/test_app_smoke.py::test_login_bu_selection_and_home_start_without_exception",
+  "tests/test_cement_hierarchy.py::test_cement_equipment_is_sourced_from_register_cloned_to_three_plants_and_keeps_spares",
+  "tests/test_cement_register.py::test_cement_register_schema_and_engine_load",
+  "tests/test_cement_register.py::test_p23_generates_risk_assessment_pdf",
+  "tests/test_dashboard_configuration.py::test_equipment_validation_lists_cover_all_three_cement_plants",
+  "tests/test_dashboard_configuration.py::test_event_and_lesson_schemas_support_optional_link_and_field_update",
+  "tests/test_dashboard_configuration.py::test_every_dashboard_template_controls_chart_and_table_fields",
+  "tests/test_dashboard_configuration.py::test_nascon_name_and_storage_are_global",
+  "tests/test_formula.py::test_cpp_functions_and_ordered_evaluation",
+  "tests/test_formula.py::test_formula_blocks_unsafe_code",
+  "tests/test_formula.py::test_target_direction",
+  "tests/test_roles.py::test_hash_and_roles",
+  "tests/test_storage_bulk_placeholder.py::test_atomic_append_and_formula_injection",
+  "tests/test_storage_bulk_placeholder.py::test_ta_to_tg_placeholder_entry_calculation_and_excel_roundtrip"
+]

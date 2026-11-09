@@ -1,97 +1,94 @@
-# Digital Operations & Knowledge Portal
+# OPERA — Operational Excellence and Reliability Assistant
 
-A deployment-ready Streamlit application for multiple business units. The selected business unit controls the hierarchy, labels, KPI layout, round form, analytics and knowledge workspace shown after login.
+OPERA is a role-based Streamlit application for operational dashboards, validated plant data, event and lesson management, calculated KPIs, operating parameters, and register-backed risk assessments.
 
-## What changed
+## Deployment
 
-- Added a login experience with username, password and business-unit selection before entry.
-- Added role-based navigation and an administrator-only page.
-- Rebuilt the visual layer as a professional web application: branded login, persistent workspace navigation, hero panels, cards, KPI tiles, responsive charts and explicit data-source badges.
-- Preserved the Refinery / Alkylation / Butamer calculation logic from `src/portal/data_store.py`:
-  - `operating_mode` and `mode_note`;
-  - `tag_for` and daily-average `dcs_value`;
-  - `limit_status` and `health_summary`, including Reactor A/B tag selection;
-  - `dcs_reference`, `verify_reading` and `verification_table` with monitor/critical differences;
-  - `relationship_summary` correlation ranking and strength labels.
-- Reimplemented the supplied Refinery pages inside the authenticated shell:
-  - Butamer Unit Overview;
-  - Feed → Process → Product Analytics;
-  - Digital Operator Rounds & Verification;
-  - SOP & Knowledge Portal;
-  - Events & Investigations.
-- Reused the `business_unit → block → unit → section → equipment` master hierarchy as the reusable model.
-- Added configurable Cement and Fertilizer workspaces to demonstrate replication without new Python pages.
-- Added admin workflows for cloning/importing business-unit configuration, replacing the master hierarchy, uploading operational data, publishing SOP files, and exporting the audit log.
-
-## Source status
-
-The supplied GitHub repository and live Streamlit URL were inaccessible from the build environment. The supplied `data_store.py` and pages 2–4 were used directly as the logic/source reference. Page 1 and the CSV assets were reconstructed to the schemas required by the supplied code. Reconstructed CSVs are deterministic demonstration data and are labelled as such in the UI.
-
-Replace these files with the authoritative repository versions before operational use:
-
-```text
-config/parameter_mapping.csv
-config/operating_modes.csv
-config/operating_limits.csv
-config/verification_limits.csv
-data/processed/analysis/butamer_kpi_dataset.csv
-data/processed/dcs/butamer_master_dataset.csv
-data/sample/*.csv
-```
-
-No business claim should be made from the packaged reconstruction.
-
-## Default first-run credentials
-
-| Role | Username | Password |
-|---|---|---|
-| Operator | `operator` | `Operator@123` |
-| Administrator | `admin` | `Admin@123` |
-
-These defaults are only for demonstration. Override them before deployment with environment variables:
+1. Unzip the package without changing its folder structure.
+2. Create a new Streamlit Community Cloud app and select `app.py` as the entry point.
+3. Use Python 3.12 (`runtime.txt`). Dependencies are in `requirements.txt`.
+4. Optional: copy `.streamlit/secrets.example.toml` into Streamlit Cloud **App settings → Secrets**, replace every placeholder, and never commit a real `secrets.toml`.
+5. Start locally with:
 
 ```bash
-export PORTAL_OPERATOR_PASSWORD='strong-value'
-export PORTAL_ADMIN_PASSWORD='different-strong-value'
-```
-
-Or add the equivalent values to Streamlit secrets using `.streamlit/secrets.example.toml` as the template.
-
-## Run locally
-
-```bash
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 streamlit run app.py
 ```
 
-## Add another business unit without Python code
+For a later server deployment, set `OPERA_DATA_DIR` to persistent storage. The CSV persistence, locking, atomic replacement, attachments, audit, notifications and risk-register uploads are isolated in the shared storage services.
 
-1. Sign in as `admin`.
-2. Open **Portal Administration → Business units**.
-3. Clone an existing business unit.
-4. Download its JSON configuration.
-5. Edit hierarchy labels, navigation labels, KPI definitions, round fields and knowledge seeds.
-6. Import the JSON configuration.
-7. Upload the business unit's operational CSV/Excel dataset under **Data & KPIs**.
-8. Upload controlled knowledge files under **SOP uploads**.
-9. Sign out and select the new business unit on the login page.
+## Seeded test logins
 
-The configuration contract is in `CONFIGURATION_GUIDE.md`.
+All seeded accounts use the temporary password `ChangeMe!2026`.
 
-## Storage and production limitations
+| Username | Role | Business-unit access |
+|---|---|---|
+| `superadmin` | Super Admin | All; forced password change on first login |
+| `buadmin` | BU Admin | Cement, Refinery, Fertilizer, NASCON |
+| `operator` | Operator | Cement, Refinery, Fertilizer, NASCON |
+| `viewer` | Viewer | Cement, Refinery, Fertilizer, NASCON |
 
-The packaged build uses local JSON/CSV files plus SQLite. This is suitable for a proof of concept and a controlled single-instance deployment. Streamlit Community Cloud local storage can reset on instance restart and is not a system of record.
+Change or disable every seeded account before production. Passwords in `users.csv` are PBKDF2-SHA256 hashes; five failed attempts lock an account for 15 minutes. Matching users can be overridden through Streamlit Secrets.
 
-For production, keep the page/config model but replace the storage adapters with SharePoint/Dataverse, SQL or an approved service. Use Entra ID or another enterprise identity provider instead of shared default credentials.
+## Business units and hierarchy
 
-## Test
+- Active: Cement, Refinery, Fertilizer and NASCON.
+- NASCON contains Salt and Sugar sections.
+- Refinery contains the Butamer unit.
+- BU5–BU9 are inactive placeholders. A Super Admin can name and activate a placeholder or clone an existing BU without code.
+- Equipment follows `Business Unit → Plant → Unit / Section → Equipment`.
+- Cement has three configured plants: Okpella Cement Plant, Obajana Cement Plant and Ibese Cement Plant. Obajana and Ibese each use cloned named equipment records—not spare placeholders—from the 67-item Okpella hierarchy. The 500 `CEM-SPARE-*` placeholders remain available for future equipment only.
+
+## Main application flow
+
+`Login → Business Unit → OPERA Home → module`
+
+`Data Input → Event Log → Data Analysis → Data Output`
+
+Modules:
+
+- Plant Overview, Equipment Overview and Operations Dashboard with configurable templates, chart fields, table fields and chart type
+- Chart layouts for every supported chart type: split into a two-column individual-axis grid or place fields on the same axis
+- Data Input: manual, validated bulk upload and DCS JSON connector
+- Event Log: report, table or picture events; stored notifications; optional update of any active Field Data (`F`) field
+- Data Analysis: multi-field comparison, statistics, forecast, and Field vs DCS Monitor/Critical checks with shutdown-day exclusion
+- Data Output: calculated fields and input/calculated/merged Excel downloads
+- Operating Parameters: Process and Quality
+- Risk Assessment: deterministic, Excel-register-backed assessments and PDFs
+- Lesson Bank: independent lessons with an optional Event Log reference
+- Admin / Super Admin: BUs, users, fields, formulas, dashboard templates, validated equipment hierarchy lists, registers, DCS connector, presets, audit and backups
+
+## Data and calculated fields
+
+Each BU has one CSV per source: DCS (`DP1–DP1000`), Lab (`L1–L1000`), Field (`F1–F1000`), and placeholders `TA1–TG1000`. DCS, Lab and Field contain 20 realistic active sample fields for the four active BUs. The seven placeholder sources have no sample rows; activate their fields in **Admin → Fields & formulas** before use.
+
+Manual and bulk rows use ISO dates and 24-hour time. Values are checked for numeric format, configured range and abnormal jumps. Flags are retained in `flags.csv`. CSV values are protected from spreadsheet-formula injection.
+
+The ordered formula engine supports field references such as `[DP1]`, baseline constants, arithmetic, comparisons and `IF`, `MIN`, `MAX`, `ABS`, `MOD`, and `ROUND`. Active BUs include eight named sample calculated fields. KPI cards show value, target, variance and On/Off Target status. Current, Period Total, MTD and YTD templates use Daily/Period targets and configured aggregation.
+
+## Risk registers
+
+The deployment keeps approved registers as Excel workbooks and does not modify them:
+
+- Cement: `registers/OKPELLA_Master_Workbook_v8.xlsx`
+- Refinery: `registers/DANGOTE_REFINERY_Master_Workbook_v1.xlsx`
+- Fertilizer: `registers/DANGOTE_FERTILISER_Master_Workbook_v1.xlsx`
+
+NASCON and new BUs require an approved register upload before risk assessments can be generated. Register uploads are validated before activation. Optional GitHub commit persistence is available through `[github]` secrets for Community Cloud testing.
+
+## Community Cloud persistence warning
+
+Local file changes can be lost when a Community Cloud container restarts. For testing, use the built-in download/backup functions and optional GitHub persistence for risk registers. For production, mount persistent server storage and set `OPERA_DATA_DIR`.
+
+## Tests
+
+Run:
 
 ```bash
-pytest -q
+pytest
+python -m py_compile app.py opera/*.py scripts/seed_data.py
 ```
 
-The tests cover the preserved Refinery calculations, configuration load, login rendering and an authenticated Refinery smoke path.
+The included suite covers the formula engine, secure roles and hashes, locked CSV storage, bulk/placeholder-source validation, Excel round-trip, Cement hierarchy provenance, Cement v8 register loading and P23 risk/PDF generation, and Streamlit startup.
+
+See `BUILD_NOTES.md` and `TEST_RESULTS.md` for integration decisions and verification results.
